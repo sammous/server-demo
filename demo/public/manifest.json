@@ -1,6 +1,6 @@
 {
-  "short_name": "AllenNLP Demo",
-  "name": "Demo for AllenNLP",
+  "short_name": "dataESR Demo",
+  "name": "Demo for dataESR Text classification",
   "icons": [
     {
       "src": "favicon.ico",
