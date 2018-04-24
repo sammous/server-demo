@@ -34,12 +34,6 @@ class ModelOutput extends React.Component {
          * you want.  We've got a few examples, of text-based output, and of visualizing model
          * internals using heat maps.
          */}
-
-        <div className="form__field">
-          <label>"Top 5 Labels (label, proba) :"</label>
-          <div className="model__content__summary">{ prediction_data }</div>
-        </div>
-
         <div className="form__field">
           {/* We like using Collapsible to show model internals; you can keep this or change it. */}
           <HeatMap xLabels={['Predictions']} yLabels={labels} data={prediction_data} xLabelWidth={xLabelWidth} />
