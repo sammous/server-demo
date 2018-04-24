@@ -11,20 +11,21 @@ class ModelOutput extends React.Component {
     // whatever you want here and visualize it.  We're giving some examples of different return
     // types you might have.  Change names for data types you want, and delete anything you don't
     // need.
-    var string_result_field = outputs['string_result_field'];
     // This is a 1D attention array, which we need to make into a 2D matrix to use with our heat
     // map component.
-    var attention_data = outputs['attention_data'].map(x => [x]);
-    // This is a 2D attention matrix.
-    var matrix_attention_data = outputs['matrix_attention_data'];
-    // Labels for our 2D attention matrix, and the rows in our 1D attention array.
-    var column_labels = outputs['column_labels'];
-    var row_labels = outputs['row_labels'];
 
+    var labels = [
+      'computational_mathematics', 'oncology', 'chemical_engineering', 'mathematical_physics', 'health_toxicology_and_mutagenesis', 'cultural_studies', 'radiation', 'medical_surgical', 'earth_and_planetary_sciences_miscellaneous', 'general_chemical_engineering', 'cancer_research', 'visual_arts_and_performing_arts', 'statistical_and_nonlinear_physics', 'analytical_chemistry', 'strategy_and_management', 'immunology_and_microbiology', 'speech_and_hearing', 'community_and_home_care',  'infectious_diseases', 'food_science', 'otorhinolaryngology', 'materials_science', 'pathology_and_forensic_medicine', 'computer_graphics_and_computer_aided_design', 'pediatrics_perinatology_and_child_health', 'general_economics_econometrics_and_finance', 'archaeology', 'psychiatry_and_mental_health', 'applied_psychology', 'museology', 'finance', 'pharmacology', 'geology', 'management_science_and_operations_research', 'social_sciences', 'electrical_and_electronic_engineering',  'water_science_and_technology', 'sociology_and_political_science', 'earth_and_planetary_sciences', 'general_physics_and_astronomy', 'pharmacology_medical', 'physics_and_astronomy', 'immunology', 'general_chemistry', 'developmental_and_educational_psychology', 'orthopedics_and_sports_medicine', 'economics_econometrics_and_finance', 'statistics_probability_and_uncertainty', 'biological_psychiatry', 'computer_science_applications', 'biomaterials', 'developmental_biology', 'demography', 'general_social_sciences', 'geriatrics_and_gerontology', 'epidemiology', 'biochemistry_medical', 'mechanics_of_materials', 'algebra_and_number_theory', 'economics_and_econometrics', 'development', 'gerontology', 'ecology', 'biomedical_engineering', 'earth_surface_processes', 'agricultural_and_biological_sciences', 'business_management_and_accounting', 'neurology', 'histology', 'leadership_and_management', 'dermatology', 'surgery', 'health_sciences', 'genetics_clinical', 'pollution', 'medical_laboratory_technology', 'software', 'genetics', 'psychology', 'clinical_psychology', 'astronomy_and_astrophysics', 'behavioral_neuroscience', 'microbiology', 'general_biochemistry_genetics_and_molecular_biology', 'ecology_evolution_behavior_and_systematics', 'parasitology', 'agronomy_and_crop_science', 'organizational_behavior_and_human_resource_management', 'structural_biology', 'medicine', 'management_monitoring_policy_and_law', 'geochemistry_and_petrology', 'urban_studies', 'architecture', 'hardware_and_architecture', 'pharmaceutical_science', 'philosophy', 'physiology_medical', 'space_and_planetary_science', 'agricultural_and_biological_sciences_miscellaneous', 'nature_and_landscape_conservation', 'anthropology', 'plant_science', 'civil_and_structural_engineering', 'environmental_engineering', 'oceanography', 'language_and_linguistics', 'physiology', 'public_health_environmental_and_occupational_health', 'internal_medicine', 'molecular_biology', 'environmental_science', 'pulmonary_and_respiratory_medicine', 'cardiology_and_cardiovascular_medicine', 'cellular_and_molecular_neuroscience', 'arts_and_humanities_miscellaneous', 'animal_science_and_zoology', 'atomic_and_molecular_physics_and_optics', 'transplantation', 'general_agricultural_and_biological_sciences', 'logic', 'toxicology', 'nutrition_and_dietetics', 'endocrinology_diabetes_and_metabolism', 'chiropractics', 'atmospheric_science', 'emergency_medicine', 'religious_studies', 'physical_and_theoretical_chemistry', 'statistics_and_probability', 'general_mathematics', 'horticulture', 'general_earth_and_planetary_sciences', 'health_policy', 'urology', 'issues_ethics_and_legal_aspects', 'ocean_engineering', 'biochemistry_genetics_and_molecular_biology', 'political_science_and_international_relations', 'phychiatric_mental_health', 'human_computer_interaction', 'conservation', 'music', 'mechanical_engineering', 'computer_vision_and_pattern_recognition', 'general_medicine', 'industrial_and_manufacturing_engineering', 'artificial_intelligence', 'radiology_nuclear_medicine_and_imaging', 'applied_microbiology_and_biotechnology', 'social_sciences_miscellaneous', 'general_materials_science', 'social_psychology', 'computational_theory_and_mathematics', 'palaeontology', 'sensory_systems', 'geophysics', 'nuclear_and_high_energy_physics', 'cognitive_neuroscience', 'physical_therapy_sports_therapy_and_rehabilitation', 'soil_science', 'general_environmental_science', 'life_sciences', 'business_and_international_management', 'cell_biology', 'mathematics_miscellaneous', 'general_neuroscience', 'history_and_philosophy_of_science', 'literature_and_literary_theory', 'computational_mechanics', 'applied_mathematics', 'arts_and_humanities', 'bioengineering', 'numerical_analysis', 'fluid_flow_and_transfer_processes', 'history', 'geography_planning_and_development', 'nursing', 'health_social_science', 'condensed_matter_physics', 'endocrinology', 'experimental_and_cognitive_psychology', 'clinical_biochemistry', 'safety_risk_reliability_and_quality', 'engineering', 'medicine_miscellaneous', 'decision_sciences', 'accounting', 'education', 'economics_econometrics_and_finance_miscellaneous', 'health_professions', 'instrumentation', 'general_nursing', 'aquatic_science', 'emergency', 'pharmacology_toxicology_and_pharmaceutics', 'biochemistry', 'clinical_neurology', 'environmental_chemistry', 'forestry', 'linguistics_and_language', 'general_business_management_and_accounting', 'insect_science', 'mathematics', 'control_and_optimization', 'neuropsychology_and_physiological_psychology', 'general_psychology', 'computer_science', 'gastroenterology', 'organic_chemistry', 'radiological_and_ultrasound_technology', 'information_systems_and_management', 'general_arts_and_humanities', 'biophysics', 'anatomy', 'business_management_and_accounting_miscellaneous', 'control_and_systems_engineering', 'neuroscience', 'law', 'theoretical_computer_science', 'classics', 'obstetrics_and_gynaecology', 'physical_sciences', 'metals_and_alloys', 'computer_networks_and_communications', 'ophthalmology', 'analysis', 'environmental_science_miscellaneous', 'public_administration', 'general_engineering', 'general_computer_science', 'physics_and_astronomy_miscellaneous', 'biotechnology', 'chemistry', 'inorganic_chemistry', 'information_systems', 'anesthesiology_and_pain_medicine']
+
+    var prediction_data = outputs['all_predictions'].map(x => [x]);
+    //var top5 = outputs['top5'];
+    // This is a 2D attention matrix.
+    // Labels for our 2D attention matrix, and the rows in our 1D attention array.
+    //var row_labels = outputs['all_labels'];
     // This is how much horizontal space you'll get for the row labels.  Not great to have to
     // specify it like this, or with this name, but that's what we have right now.
-    var xLabelWidth = "70px";
-
+    var xLabelWidth = "90px";
+    console.log(outputs);
     return (
       <div className="model__content">
 
@@ -35,20 +36,13 @@ class ModelOutput extends React.Component {
          */}
 
         <div className="form__field">
-          <label>String result field</label>
-          <div className="model__content__summary">{ string_result_field }</div>
+          <label>"Top 5 Labels (label, proba) :"</label>
+          <div className="model__content__summary">{ prediction_data }</div>
         </div>
 
         <div className="form__field">
           {/* We like using Collapsible to show model internals; you can keep this or change it. */}
-          <Collapsible trigger="Model internals (beta)">
-            <Collapsible trigger="1D attention">
-                <HeatMap xLabels={['Column label']} yLabels={row_labels} data={attention_data} xLabelWidth={xLabelWidth} />
-            </Collapsible>
-            <Collapsible trigger="2D attention">
-                <HeatMap xLabels={column_labels} yLabels={row_labels} data={matrix_attention_data} xLabelWidth={xLabelWidth} />
-            </Collapsible>
-          </Collapsible>
+          <HeatMap xLabels={['Predictions']} yLabels={labels} data={prediction_data} xLabelWidth={xLabelWidth} />
         </div>
 
       </div>
