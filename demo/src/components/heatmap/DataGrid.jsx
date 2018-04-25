@@ -21,7 +21,6 @@ const DataGrid = ({
     <div style={{"white-space": "nowrap"}}>
       {yLabels.map((y, yi) => (
         <div key={`${y}_${yi}`} style={{clear: "both"}}>
-          <div style={{display: "inline-block", width: xLabelWidth, textAlign: 'right', paddingRight: '5px', paddingTop:`${boxSize/3.7}px`}}>{y}</div>
           {xLabels.map((x, xi) => (
             <div
               title={`${data[yi][xi]}`}
@@ -35,9 +34,10 @@ const DataGrid = ({
                 opacity: (data[yi][xi] - min) / (max - min),
               }}
             >
-              &nbsp;
+            &nbsp;
             </div>
           ))}
+          <div style={{display: "inline-block", width: xLabelWidth, textAlign: 'right', paddingLeft: `${boxSize+5}px`}}>{y}</div>
         </div>
       ))}
     </div>

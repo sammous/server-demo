@@ -58,6 +58,7 @@ class ModelOutput extends React.Component {
         <Collapsible trigger="Model Visualisation">
         <Collapsible trigger="Categories HeatMap">
         <div className="form__field">
+          <label>Predictions</label>
           {/* We like using Collapsible to show model internals; you can keep this or change it. */}
           <HeatMap xLabels={['']} yLabels={sorted_labels} data={sorted_predictions} xLabelWidth={xLabelWidth} />
         </div>
